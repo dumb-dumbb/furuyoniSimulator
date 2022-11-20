@@ -61,6 +61,7 @@
     <Compile Include="Assets\Script\SingleGame.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\EventQueue.cs" />
+    <Compile Include="Assets\Script\BasicButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

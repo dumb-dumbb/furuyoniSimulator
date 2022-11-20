@@ -5,15 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    List<Card> deck;
-    List<Card> specialDeck;
-    List<Card> usedCards;
-    List<Card> discardCards;
-    List<Card> hand;
+    public List<Card> deck;
+    public List<Card> specialDeck;
+    public List<Card> usedCards;
+    public List<Card> discardCards;
+    public List<Card> hand;
 
     public int aura { get; set; }
     public int flare { get; set; }
     public int life { get; set; }
+    public int maxAura { get; set; }
+    public int focus { get; set; }
+
+    public const int MAX_FOCUS = 2;
 
     void Start()
     {
@@ -23,20 +27,22 @@ public class Player : MonoBehaviour
         discardCards = new List<Card>();
         hand = new List<Card>();
 
-        deck.Add(new Card());
-        deck.Add(new Card());
-        deck.Add(new Card());
-        deck.Add(new Card());
-        deck.Add(new Card());
-        deck.Add(new Card());
-        deck.Add(new Card());
+        deck.Add(new Card(Card.type.ACTION, "±â¹é"));
+        //deck.Add(new Card());
+        //deck.Add(new Card());
+        //deck.Add(new Card());
+        //deck.Add(new Card());
+        //deck.Add(new Card());
+        //deck.Add(new Card());
 
-        specialDeck.Add(new Card());
-        specialDeck.Add(new Card());
-        specialDeck.Add(new Card());
+        //specialDeck.Add(new Card());
+        //specialDeck.Add(new Card());
+        //specialDeck.Add(new Card());
         aura = 3;
         flare = 0;
         life = 10;
+        maxAura = 5;
+        focus = 1;
     }
 
     //private void Initialize()
