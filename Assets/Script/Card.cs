@@ -14,6 +14,7 @@ public class Card
     public type cardType;
     public string cardName;
     public List<Timimg> effectList;
+    public int Id;
 
     public Card(type t, string name)
     {
@@ -21,6 +22,7 @@ public class Card
         cardName = name;
         effectList = new List<Timimg>();
 
+        Id = (int)(Random.value * 100);
     }
 
     // Start is called before the first frame update

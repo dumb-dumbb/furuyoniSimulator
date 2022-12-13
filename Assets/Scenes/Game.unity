@@ -242,7 +242,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 98846929}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2026475374}
+        m_TargetAssemblyTypeName: SingleGame, Assembly-CSharp
+        m_MethodName: OnTestDrawClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &98846929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,12 +2349,14 @@ MonoBehaviour:
   me: {fileID: 1707075046}
   you: {fileID: 657549656}
   eventQueue: {fileID: 6433644203688016488, guid: cbaacb330aa24d345a3975d2c388fb46, type: 3}
+  card: {fileID: 8926274534910152986, guid: e98f0e1019021a54b9a56ac0528e355c, type: 3}
   distanceText: {fileID: 1591524758}
   dustText: {fileID: 1443478050}
   myAuraText: {fileID: 2117087342}
   myLifeText: {fileID: 960589633}
   myFlareText: {fileID: 2068878069}
   myFocusText: {fileID: 936888261}
+  hand: {fileID: 21932654}
 --- !u!1 &2068878069
 GameObject:
   m_ObjectHideFlags: 0

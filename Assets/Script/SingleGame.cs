@@ -9,6 +9,7 @@ public class SingleGame : MonoBehaviour
     public Player me;
     public Player you;
     public GameObject eventQueue;
+    public GameObject card;
 
     public GameObject distanceText;
     public GameObject dustText;
@@ -16,6 +17,7 @@ public class SingleGame : MonoBehaviour
     public GameObject myLifeText;
     public GameObject myFlareText;
     public GameObject myFocusText;
+    public GameObject hand;
 
     public int distance { get; set; }
     public int dust { get; set; }
@@ -38,8 +40,10 @@ public class SingleGame : MonoBehaviour
     /// <summary>
     ///  카드 드로우
     /// </summary>
-    public void Draw(Player player, int count)
+    public void Draw(Player mePlayer, Player youPlayer, int count)
     {
+        GameObject queue = Instantiate(eventQueue);
+        queue.GetComponent<EventQueue>().AddCardTiming(mePlayer, youPlayer, this, count);
 
     }
 
@@ -64,7 +68,7 @@ public class SingleGame : MonoBehaviour
 
     public void OnTestDrawClick()
     {
-        GameObject queue = Instantiate(eventQueue);
+        Draw(me, you, 1);
     }
 
     public void UpdateWindow()
@@ -80,5 +84,38 @@ public class SingleGame : MonoBehaviour
         myFlareText.GetComponent<Text>().text = flare.ToString();
         myFocusText.GetComponent<Text>().text = focus.ToString();
 
+        Debug.Log(me.hand.Count);
+
+    }
+
+    public void ResetHandPanel(Card c)
+    {
+        // TODO : 1장씩 삭제하는 것 구현
+        if(me.hand.Contains(c))
+        {
+            var handList = hand.GetComponentsInChildren<Transform>();
+            
+            me.hand.Remove(c);
+        }
+
+
+        //var childList = hand.GetComponentsInChildren<Transform>();
+        //if(childList != null)
+        //{
+        //    for (int i = 1; i < childList.Length; i++)
+        //        if (childList[i] != hand.transform)
+        //            Destroy(childList[i]);
+        //}
+    }
+
+    public void SetHandPanel(Card c)
+    {
+        GameObject obj;
+        int n = 0;
+        n = hand.GetComponentsInChildren<Transform>().Length - 1;
+        Debug.Log(n);
+        obj = Instantiate(card, hand.transform);
+        obj.GetComponent<CardScript>().card = c;
+        obj.transform.localPosition = new Vector3(-20 + 60 * n, 0, 0);
     }
 }

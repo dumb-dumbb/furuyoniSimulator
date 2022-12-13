@@ -35,11 +35,16 @@ public class EventQueue : MonoBehaviour
                 case "before":
                     // TODO: 기본행동이나 카드 사용 전에 체크
                     break;
+                case "after":
+                    break;
                 case "forward":
                     Forward(time.me, time.game);
                     break;
                 case "yurinaN5-1":
                     AddFocus(time.me, 1);
+                    break;
+                case "draw":
+                    DrawCard(time.me, time.game);
                     break;
                 default:
                     break;
@@ -59,12 +64,19 @@ public class EventQueue : MonoBehaviour
     {
         eventList.Add(new Timimg(me, game, "basicAction", "before"));
         eventList.Add(new Timimg(me, game, "basicAction", type));
+        eventList.Add(new Timimg(me, game, "basicAction", "after"));
         flag = true;
     }
 
-    public void AddCardTiming(Player me, Player you, SingleGame game, string type)
+    public void AddCardTiming(Player me, Player you, SingleGame game, int count)
     {
-
+        eventList.Add(new Timimg(me, you, game, "drawCard", "before"));
+        for(int i = 0; i < count; i++)
+        {
+            eventList.Add(new Timimg(me, you, game, "drawCard", "draw"));
+        }
+        eventList.Add(new Timimg(me, you, game, "drawCard", "before"));
+        flag = true;
     }
 
     void Forward(Player player, SingleGame game)
@@ -100,16 +112,18 @@ public class EventQueue : MonoBehaviour
             player.focus += num;
     }
 
-    void DrawCard(Player player, int num)
+    void DrawCard(Player player, SingleGame game)
     {
-        for(int i = 0; i < num; i++)
+        if (player.deck.Count > 0)
         {
-            if(player.deck.Count > 0)
-            {
-                Card card = player.deck[0];
-                player.deck.RemoveAt(0);
-                player.hand.Add(card);
-            }
+            Card card = player.deck[0];
+            player.deck.RemoveAt(0);
+            player.hand.Add(card);
+            game.SetHandPanel(card);
+        }
+        else
+        {
+            // TODO: 초조뎀
         }
     }
 
