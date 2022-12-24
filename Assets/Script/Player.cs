@@ -27,8 +27,8 @@ public class Player : MonoBehaviour
         discardCards = new List<Card>();
         hand = new List<Card>();
 
-        deck.Add(new Card(Card.type.ACTION, "±â¹é"));
-        //deck.Add(new Card());
+        deck.Add(new Card(Card.ACTION, "na_01_yurina_o_n_5_s5"));
+        deck.Add(new Card(Card.ATTACK, "na_01_yurina_o_n_1"));
         //deck.Add(new Card());
         //deck.Add(new Card());
         //deck.Add(new Card());

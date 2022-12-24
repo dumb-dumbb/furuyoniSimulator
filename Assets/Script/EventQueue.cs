@@ -28,8 +28,10 @@ public class EventQueue : MonoBehaviour
     /// </summary>
     void RunQueue()
     {
+        // TODO: 모든 버튼 비활성화, 팝업 닫기
         eventList.ForEach((time) =>
         {
+            Debug.Log(time.effect);
             switch(time.effect)
             {
                 case "before":
@@ -40,8 +42,13 @@ public class EventQueue : MonoBehaviour
                 case "forward":
                     Forward(time.me, time.game);
                     break;
-                case "yurinaN5-1":
+                case "na_01_yurina_o_n_5_s5_1":
                     AddFocus(time.me, 1);
+                    break;
+                case "na_01_yurina_o_n_5_s5_2":
+                    //AddFocus(time.me, 1);
+                    break;
+                case "na_01_yurina_o_n_1_1":
                     break;
                 case "draw":
                     DrawCard(time.me, time.game);
@@ -68,7 +75,7 @@ public class EventQueue : MonoBehaviour
         flag = true;
     }
 
-    public void AddCardTiming(Player me, Player you, SingleGame game, int count)
+    public void AddDrawTiming(Player me, Player you, SingleGame game, int count)
     {
         eventList.Add(new Timimg(me, you, game, "drawCard", "before"));
         for(int i = 0; i < count; i++)
@@ -77,6 +84,18 @@ public class EventQueue : MonoBehaviour
         }
         eventList.Add(new Timimg(me, you, game, "drawCard", "before"));
         flag = true;
+    }
+
+    public void AddCardTiming(Player me, Player you, SingleGame game, Card card)
+    {
+        eventList.Add(new Timimg(me, you, game, card.cardType, "before"));
+        for(int i = 0; i < card.effectList.Count; i++)
+        {
+            eventList.Add(new Timimg(me, you, game, card.effectList[i].tag, card.effectList[i].effect));
+        }
+        eventList.Add(new Timimg(me, you, game, card.cardType, "after"));
+        flag = true;
+
     }
 
     void Forward(Player player, SingleGame game)
@@ -107,7 +126,7 @@ public class EventQueue : MonoBehaviour
     {
         // TODO: 위축 상태일 때 num을 1 깎는 거 추가
         if(player.focus + num > 2)
-            player.focus = num;
+            player.focus = 2;
         else
             player.focus += num;
     }
@@ -123,7 +142,7 @@ public class EventQueue : MonoBehaviour
         }
         else
         {
-            // TODO: 초조뎀
+            // TODO: 초조뎀, GetDamage 사용?
         }
     }
 
@@ -147,6 +166,17 @@ public class EventQueue : MonoBehaviour
 
         startLocation -= count;
         endLocation += count;
+    }
+
+    void Attack(Player me, Player you, int auraDamage, int lifeDamage)
+    {
+        //TODO : 공격 구현
+        
+    }
+
+    void GetDamage(Player me, int auraDamage, int lifeDamage)
+    {
+
     }
 
 }

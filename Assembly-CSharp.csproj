@@ -58,11 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Card.cs" />
     <Compile Include="Assets\Script\Timimg.cs" />
+    <Compile Include="Assets\Script\CardScript.cs" />
     <Compile Include="Assets\Script\SingleGame.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\EventQueue.cs" />
     <Compile Include="Assets\Script\BasicButton.cs" />
-    <Compile Include="Assets\Script\CardScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

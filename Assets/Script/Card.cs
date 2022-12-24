@@ -4,36 +4,33 @@ using UnityEngine;
 
 public class Card
 {
-    public enum type
-    {
-        ATTACK,
-        ACTION,
-        TEST
-    }
 
-    public type cardType;
+    public const string ATTACK = "attack";
+    public const string ACTION = "action";
+    public const string TEST = "test";
+
+    public string cardType;
     public string cardName;
     public List<Timimg> effectList;
     public int Id;
 
-    public Card(type t, string name)
+    public Card(string t, string name)
     {
         cardType = t;
         cardName = name;
         effectList = new List<Timimg>();
 
         Id = (int)(Random.value * 100);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        switch(name)
+        {
+            case "na_01_yurina_o_n_5_s5":
+                effectList.Add(new Timimg(cardType, "na_01_yurina_o_n_5_s5_1"));
+                effectList.Add(new Timimg(cardType, "na_01_yurina_o_n_5_s5_2"));
+                break;
+            case "na_01_yurina_o_n_1":
+                effectList.Add(new Timimg(cardType, "na_01_yurina_o_n_1_1"));
+                break;
+        }
     }
 }

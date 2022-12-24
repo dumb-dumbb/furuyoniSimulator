@@ -6,6 +6,11 @@
     public string effect { get; set; }
     public SingleGame game { get; set; }
 
+    public Timimg(string tag, string effect)
+    {
+        this.tag = tag;
+        this.effect = effect;
+    }
     public Timimg(Player me, Player you, SingleGame game, string tag, string effect)
     {
         this.me = me;

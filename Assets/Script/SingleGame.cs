@@ -19,6 +19,8 @@ public class SingleGame : MonoBehaviour
     public GameObject myFocusText;
     public GameObject hand;
 
+    private bool canPanelOpened;
+
     public int distance { get; set; }
     public int dust { get; set; }
 
@@ -29,12 +31,16 @@ public class SingleGame : MonoBehaviour
     {
         distance = 10;
         dust = 0;
+        canPanelOpened = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            ClearPopUp();
+        }
     }
 
     /// <summary>
@@ -43,7 +49,7 @@ public class SingleGame : MonoBehaviour
     public void Draw(Player mePlayer, Player youPlayer, int count)
     {
         GameObject queue = Instantiate(eventQueue);
-        queue.GetComponent<EventQueue>().AddCardTiming(mePlayer, youPlayer, this, count);
+        queue.GetComponent<EventQueue>().AddDrawTiming(mePlayer, youPlayer, this, count);
 
     }
 
@@ -115,7 +121,38 @@ public class SingleGame : MonoBehaviour
         n = hand.GetComponentsInChildren<Transform>().Length - 1;
         Debug.Log(n);
         obj = Instantiate(card, hand.transform);
-        obj.GetComponent<CardScript>().card = c;
+        obj.GetComponent<CardScript>().SetAttribute(this, c);
+        obj.GetComponent<Button>().onClick.AddListener(ClickCard);
         obj.transform.localPosition = new Vector3(-20 + 60 * n, 0, 0);
+    }
+
+    public void ClearPopUp()
+    {
+        GameObject[] panelArr = GameObject.FindGameObjectsWithTag("panel");
+        for(int i = 0; i < panelArr.Length; i++)
+        {
+            panelArr[i].SetActive(false);
+        }
+    }
+
+    public void UseCard(Card card)
+    {
+        // TODO : 카드 사용
+        GameObject queue = Instantiate(eventQueue);
+        queue.GetComponent<EventQueue>().AddCardTiming(me, you, this, card);
+    }
+
+    public void ClickCard()
+    {
+        ClearPopUp();
+
+        if(canPanelOpened)
+        {
+            Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                    Input.mousePosition.y, -Camera.main.transform.position.z));
+            GameObject card = EventSystem.current.currentSelectedGameObject;
+
+            card.GetComponent<CardScript>().ShowPanel(point);
+        }
     }
 }
