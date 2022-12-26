@@ -30,7 +30,7 @@ public class SingleGame : MonoBehaviour
     void Start()
     {
         distance = 10;
-        dust = 0;
+        dust = 10;
         canPanelOpened = true;
     }
 
@@ -59,7 +59,7 @@ public class SingleGame : MonoBehaviour
     public void UseBasicAction(string type)
     {
         GameObject queue = Instantiate(eventQueue);
-        queue.GetComponent<EventQueue>().AddBasicActionTiming(me, this, "forward");
+        queue.GetComponent<EventQueue>().AddBasicActionTiming(me, this, type);
     }
 
     public void OnBasicActionButtonClick()
@@ -68,6 +68,7 @@ public class SingleGame : MonoBehaviour
         string type = button.GetComponent<BasicButton>().type;
 
         //Debug.Log(type);
+        
         UseBasicAction(type);
         //UpdateWindow();
     }
@@ -79,16 +80,17 @@ public class SingleGame : MonoBehaviour
 
     public void UpdateWindow()
     {
-        int aura = me.aura;
-        int life = me.life;
-        int flare = me.flare;
-        int focus = me.focus;
-
-        distanceText.GetComponent<Text>().text = distance.ToString();
+        int aura = me.GetAura();
+        int life = me.GetLife();
+        int flare = me.GetFlare();
+        int focus = me.GetFocus();
+        
+        distanceText.GetComponent<Text>().text = $"{distance}/10";
         myAuraText.GetComponent<Text>().text = aura.ToString();
         myLifeText.GetComponent<Text>().text = life.ToString();
         myFlareText.GetComponent<Text>().text = flare.ToString();
         myFocusText.GetComponent<Text>().text = focus.ToString();
+        dustText.GetComponent<Text>().text = dust.ToString();
 
         Debug.Log(me.hand.Count);
 
