@@ -14,28 +14,33 @@ public class EventQueue : MonoBehaviour
         eventList = new List<Timimg>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StartQueue()
     {
-        if(flag)
-        {
-            RunQueue();
-        }
+        flag = true;
+        StartCoroutine(RunQueue());
     }
+
 
     /// <summary>
     ///  큐에 들어온 것들을 
     /// </summary>
-    void RunQueue()
+    IEnumerator RunQueue()
     {
-        // TODO: 모든 버튼 비활성화, 팝업 닫기
-        eventList.ForEach((time) =>
+        for(int i = 0; i < eventList.Count; i++)
         {
+            yield return new WaitUntil(() => flag);
+            Timimg time = eventList[i];
             Debug.Log(time.effect);
-            switch(time.effect)
+            Debug.Log(i + " " + eventList.Count);
+            switch (time.effect)
             {
                 case "before":
                     // TODO: 기본행동이나 카드 사용 전에 체크
+                    //if(time.tag.Equals("drawCard")) // 큐에 추가해야 할 경우 이렇게 구현 가능
+                    //{
+                    //    int j = eventList.IndexOf(time);
+                    //    eventList.Insert(j+1, new Timimg(time.me, time.you, time.game, "drawCard", "after"));
+                    //}
                     break;
                 case "after":
                     break;
@@ -68,13 +73,10 @@ public class EventQueue : MonoBehaviour
                 default:
                     break;
             }
-        });
-
-        flag = false;
-
+        }
         eventList[0].game.UpdateWindow();
-        Destroy(gameObject);
     }
+
 
     /// <summary>
     ///  기본동작을 이벤트큐에 추가
@@ -84,7 +86,7 @@ public class EventQueue : MonoBehaviour
         eventList.Add(new Timimg(me, game, "basicAction", "before"));
         eventList.Add(new Timimg(me, game, "basicAction", type));
         eventList.Add(new Timimg(me, game, "basicAction", "after"));
-        flag = true;
+        StartQueue();
     }
 
     public void AddDrawTiming(Player me, Player you, SingleGame game, int count)
@@ -94,8 +96,8 @@ public class EventQueue : MonoBehaviour
         {
             eventList.Add(new Timimg(me, you, game, "drawCard", "draw"));
         }
-        eventList.Add(new Timimg(me, you, game, "drawCard", "before"));
-        flag = true;
+        eventList.Add(new Timimg(me, you, game, "drawCard", "after"));
+        StartQueue();
     }
 
     public void AddCardTiming(Player me, Player you, SingleGame game, Card card)
@@ -106,8 +108,7 @@ public class EventQueue : MonoBehaviour
             eventList.Add(new Timimg(me, you, game, card.effectList[i].tag, card.effectList[i].effect));
         }
         eventList.Add(new Timimg(me, you, game, card.cardType, "after"));
-        flag = true;
-
+        StartQueue();
     }
 
     /// <summary>
