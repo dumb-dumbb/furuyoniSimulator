@@ -6,31 +6,62 @@ using UnityEngine.UI;
 
 public class SingleGame : MonoBehaviour
 {
+    #region Variable
     public Player me;
     public Player you;
     public GameObject eventQueue;
     public GameObject card;
 
-    public GameObject distanceText;
-    public GameObject dustText;
-    public GameObject myAuraText;
-    public GameObject myLifeText;
-    public GameObject myFlareText;
-    public GameObject myFocusText;
+    private Text _distanceText;
+    private Text _dustText;
     public GameObject hand;
 
     private bool canPanelOpened;
 
-    public int distance { get; set; }
-    public int dust { get; set; }
+    private int _distance;
+    private int _dust;
 
     public const int MAX_DISTANCE = 10;
+    #endregion
+
+    #region GetterSetter
+
+    public int GetDistance()
+    {
+        return _distance;
+    }
+    public void SetDistance(int value)
+    {
+        _distance = value;
+        _distanceText.text = $"{_distance}/10";
+    }
+    public int GetDust()
+    {
+        return _dust;
+    }
+    public void SetDust(int value)
+    {
+        _dust = value;
+        _dustText.text = _dust.ToString();
+    }
+    public void SetDistanceText(Text value)
+    {
+        _distanceText = value;
+    }
+    public void SetDustText(Text value)
+    {
+        _dustText = value;
+    }
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        distance = 10;
-        dust = 10;
+        SetDistanceText(GameObject.Find("Distance").GetComponent<Text>());
+        SetDustText(GameObject.Find("Dust").GetComponent<Text>());
+        SetDistance(10);
+        SetDust(10);
         canPanelOpened = true;
     }
 
@@ -78,23 +109,6 @@ public class SingleGame : MonoBehaviour
         Draw(me, you, 1);
     }
 
-    public void UpdateWindow()
-    {
-        int aura = me.GetAura();
-        int life = me.GetLife();
-        int flare = me.GetFlare();
-        int focus = me.GetFocus();
-        
-        distanceText.GetComponent<Text>().text = $"{distance}/10";
-        myAuraText.GetComponent<Text>().text = aura.ToString();
-        myLifeText.GetComponent<Text>().text = life.ToString();
-        myFlareText.GetComponent<Text>().text = flare.ToString();
-        myFocusText.GetComponent<Text>().text = focus.ToString();
-        dustText.GetComponent<Text>().text = dust.ToString();
-
-        Debug.Log(me.hand.Count);
-
-    }
 
     public void ResetHandPanel(Card c)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Player : MonoBehaviour
 
     public const int MAX_FOCUS = 2;
 
+    private Text _auraText;
+    private Text _flareText;
+    private Text _lifeText;
+    private Text _focusText;
+
     #endregion
 
     #region GetterSetter
@@ -33,6 +39,7 @@ public class Player : MonoBehaviour
     public void SetAura(int value)
     {
         _aura = value;
+        _auraText.text = _aura.ToString();
     }
 
 
@@ -44,6 +51,7 @@ public class Player : MonoBehaviour
     public void SetFlare(int value)
     {
         _flare = value;
+        _flareText.text = _flare.ToString();
     }
 
 
@@ -55,6 +63,7 @@ public class Player : MonoBehaviour
     public void SetLife(int value)
     {
         _life = value;
+        _lifeText.text = _life.ToString();
     }
 
 
@@ -77,6 +86,27 @@ public class Player : MonoBehaviour
     public void SetFocus(int value)
     {
         _focus = value;
+        _focusText.text = _focus.ToString();
+    }
+
+    public void SetAuraText(Text value)
+    {
+        _auraText = value;
+    }
+
+    public void SetFlareText(Text value)
+    {
+        _flareText = value;
+    }
+
+    public void SetLifeText(Text value)
+    {
+        _lifeText = value;
+    }
+
+    public void SetFocusText(Text value)
+    {
+        _focusText = value;
     }
 
     #endregion
@@ -91,6 +121,12 @@ public class Player : MonoBehaviour
 
         deck.Add(new Card(Card.ACTION, "na_01_yurina_o_n_5_s5"));
         deck.Add(new Card(Card.ATTACK, "na_01_yurina_o_n_1"));
+
+        SetAuraText(GameObject.Find("Aura").GetComponent<Text>());
+        SetFlareText(GameObject.Find("Flare").GetComponent<Text>());
+        SetLifeText(GameObject.Find("Life").GetComponent<Text>());
+        SetFocusText(GameObject.Find("Focus").GetComponent<Text>());
+
         //deck.Add(new Card());
         //deck.Add(new Card());
         //deck.Add(new Card());
