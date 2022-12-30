@@ -19,6 +19,8 @@ public class SingleGame : MonoBehaviour
     public GameObject myFocusText;
     public GameObject hand;
 
+    public GameObject myBreakAwayButton;
+
     private bool canPanelOpened;
 
     public int distance { get; set; }
@@ -41,6 +43,7 @@ public class SingleGame : MonoBehaviour
         {
             ClearPopUp();
         }
+        UpdateWindow();
     }
 
     /// <summary>
@@ -92,6 +95,9 @@ public class SingleGame : MonoBehaviour
         myFocusText.GetComponent<Text>().text = focus.ToString();
         dustText.GetComponent<Text>().text = dust.ToString();
 
+        
+        myBreakAwayButton.GetComponent<Button>().interactable = distance < 3;
+        
         Debug.Log(me.hand.Count);
 
     }
