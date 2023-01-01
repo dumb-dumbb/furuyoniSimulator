@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventQueue : MonoBehaviour
 {
-    // ÀÛ¾÷ Å¥ »ı¼º
+    // ì‘ì—… í ìƒì„±
     List<Timimg> eventList;
     bool flag;
 
@@ -22,7 +22,7 @@ public class EventQueue : MonoBehaviour
 
 
     /// <summary>
-    ///  Å¥¿¡ µé¾î¿Â °ÍµéÀ» 
+    ///  íì— ë“¤ì–´ì˜¨ ê²ƒë“¤ì„ 
     /// </summary>
     IEnumerator RunQueue()
     {
@@ -35,8 +35,8 @@ public class EventQueue : MonoBehaviour
             switch (time.effect)
             {
                 case "before":
-                    // TODO: ±âº»Çàµ¿ÀÌ³ª Ä«µå »ç¿ë Àü¿¡ Ã¼Å©
-                    //if(time.tag.Equals("drawCard")) // Å¥¿¡ Ãß°¡ÇØ¾ß ÇÒ °æ¿ì ÀÌ·¸°Ô ±¸Çö °¡´É
+                    // TODO: ê¸°ë³¸í–‰ë™ì´ë‚˜ ì¹´ë“œ ì‚¬ìš© ì „ì— ì²´í¬
+                    //if(time.tag.Equals("drawCard")) // íì— ì¶”ê°€í•´ì•¼ í•  ê²½ìš° ì´ë ‡ê²Œ êµ¬í˜„ ê°€ëŠ¥
                     //{
                     //    int j = eventList.IndexOf(time);
                     //    eventList.Insert(j+1, new Timimg(time.me, time.you, time.game, "drawCard", "after"));
@@ -73,22 +73,17 @@ public class EventQueue : MonoBehaviour
                 default:
                     break;
             }
-<<<<<<< Updated upstream
-        }
-        eventList[0].game.UpdateWindow();
-=======
         });
 
         flag = false;
 
         //eventList[0].game.UpdateWindow();
         Destroy(gameObject);
->>>>>>> Stashed changes
     }
 
 
     /// <summary>
-    ///  ±âº»µ¿ÀÛÀ» ÀÌº¥Æ®Å¥¿¡ Ãß°¡
+    ///  ê¸°ë³¸ë™ì‘ì„ ì´ë²¤íŠ¸íì— ì¶”ê°€
     /// </summary>
     public void AddBasicActionTiming(Player me, SingleGame game, string type)
     {
@@ -121,7 +116,7 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    /// ±âº»µ¿ÀÛ/ÀüÁø
+    /// ê¸°ë³¸ë™ì‘/ì „ì§„
     /// </summary>
     /// <param name="player"></param>
     /// <param name="game"></param>
@@ -147,7 +142,7 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    /// ±âº»µ¿ÀÛ/ÈÄÅğ
+    /// ê¸°ë³¸ë™ì‘/í›„í‡´
     /// </summary>
     /// <param name="player"></param>
     /// <param name="game"></param>
@@ -172,7 +167,7 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    /// ±âº»µ¿ÀÛ/ÈÖ°¨±â
+    /// ê¸°ë³¸ë™ì‘/íœ˜ê°ê¸°
     /// </summary>
     /// <param name="player"></param>
     /// <param name="game"></param>
@@ -198,7 +193,7 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    /// ±âº»µ¿ÀÛ/Ç°±â
+    /// ê¸°ë³¸ë™ì‘/í’ˆê¸°
     /// </summary>
     /// <param name="player"></param>
     /// <param name="game"></param>
@@ -224,7 +219,7 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    /// ±âº»µ¿ÀÛ/ÀÌÅ»
+    /// ê¸°ë³¸ë™ì‘/ì´íƒˆ
     /// </summary>
     /// <param name="player"></param>
     /// <param name="game"></param>
@@ -248,11 +243,11 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    ///  ÁıÁß·Â Ãß°¡
+    ///  ì§‘ì¤‘ë ¥ ì¶”ê°€
     /// </summary>
     void AddFocus(Player player, int num)
     {
-        // TODO: À§Ãà »óÅÂÀÏ ¶§ numÀ» 1 ±ğ´Â °Å Ãß°¡
+        // TODO: ìœ„ì¶• ìƒíƒœì¼ ë•Œ numì„ 1 ê¹ëŠ” ê±° ì¶”ê°€
         if(player.GetFocus() + num > 2)
             player.SetFocus(2);
         else
@@ -270,7 +265,7 @@ public class EventQueue : MonoBehaviour
         }
         else
         {
-            // TODO: ÃÊÁ¶µ©, GetDamage »ç¿ë?
+            // TODO: ì´ˆì¡°ë€, GetDamage ì‚¬ìš©?
         }
     }
 
@@ -298,18 +293,18 @@ public class EventQueue : MonoBehaviour
 
     void Attack(Player attacker, Player defender, int auraDamage, int lifeDamage)
     {
-        //°ø°İ È¿°ú Àû¿ë ¼ø¼­
-        //1.°ø°İÁ¶°Ç È®ÀÎ
-        //2.°ø°İ¹ß»ı
-        //3.ÇÇ°İ ÇÃ·¹ÀÌ¾îÀÇ ´ëÀÀ È®ÀÎ
-        //  ¦¦´ëÀÀ½Ã - 1)´ëÀÀ½Ã È¿°ú Àû¿ë
-        //        2)°ø°İÁ¶°Ç ÀçÈ®ÀÎ
-        //4.°ø°İ Àû¿ë
-        //5.ÇÇ°İ ÇÃ·¹ÀÌ¾î µ¥¹ÌÁö Å¸ÀÔ ¼±ÅÃ(¿À¶ó, Ã¼·Â)
-        //6.µ¥¹ÌÁö Àû¿ë
-        //7.½ÂÆĞ È®ÀÎ
-        //  ¦¦Ã¼·Â0ÀÏ½Ã - °ÔÀÓÁ¾·á
-        //  ¦¦Ã¼·ÂÀÌ³²¾ÆÀÖÀ»¶§ - ÁøÇà
+        //ê³µê²© íš¨ê³¼ ì ìš© ìˆœì„œ
+        //1.ê³µê²©ì¡°ê±´ í™•ì¸
+        //2.ê³µê²©ë°œìƒ
+        //3.í”¼ê²© í”Œë ˆì´ì–´ì˜ ëŒ€ì‘ í™•ì¸
+        //  â””ëŒ€ì‘ì‹œ - 1)ëŒ€ì‘ì‹œ íš¨ê³¼ ì ìš©
+        //        2)ê³µê²©ì¡°ê±´ ì¬í™•ì¸
+        //4.ê³µê²© ì ìš©
+        //5.í”¼ê²© í”Œë ˆì´ì–´ ë°ë¯¸ì§€ íƒ€ì… ì„ íƒ(ì˜¤ë¼, ì²´ë ¥)
+        //6.ë°ë¯¸ì§€ ì ìš©
+        //7.ìŠ¹íŒ¨ í™•ì¸
+        //  â””ì²´ë ¥0ì¼ì‹œ - ê²Œì„ì¢…ë£Œ
+        //  â””ì²´ë ¥ì´ë‚¨ì•„ìˆì„ë•Œ - ì§„í–‰
 
 
     }
