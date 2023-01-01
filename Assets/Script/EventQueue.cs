@@ -73,11 +73,7 @@ public class EventQueue : MonoBehaviour
                 default:
                     break;
             }
-        });
-
-        flag = false;
-
-        //eventList[0].game.UpdateWindow();
+        }
         Destroy(gameObject);
     }
 
@@ -115,6 +111,7 @@ public class EventQueue : MonoBehaviour
         StartQueue();
     }
 
+    #region �⺻����
     /// <summary>
     /// 기본동작/전진
     /// </summary>
@@ -122,23 +119,23 @@ public class EventQueue : MonoBehaviour
     /// <param name="game"></param>
     private void Forward(Player player, SingleGame game)
     {
-        int n = CountAvailableSakura(game.distance, 1);
+        //int n = CountAvailableSakura(game.GetDistance(), 1);
 
-        if(player.GetAura() + n > player.GetMaxAura())
+        if(player.GetAura() + 1 > player.GetMaxAura())
         {
             return;
         }
 
-        int distance = game.distance;
+        int distance = game.GetDistance();
         int aura = player.GetAura();
 
         moveSakura(ref distance, ref aura, 1);
 
-        game.distance = distance;
+        game.SetDistance(distance);
         player.SetAura(aura);
 
         Debug.Log(player.GetAura());
-        Debug.Log(game.distance);
+        Debug.Log(game.GetDistance());
     }
 
     /// <summary>
@@ -149,8 +146,8 @@ public class EventQueue : MonoBehaviour
     private void Backward(Player player, SingleGame game)
     {
         int aura = player.GetAura();
-        int distance = game.distance;
-        int n = CountAvailableSakura(aura, 1);
+        int distance = game.GetDistance();
+        //int n = CountAvailableSakura(aura, 1);
 
         if (aura <= 0 || distance >= 10)
         {
@@ -159,11 +156,11 @@ public class EventQueue : MonoBehaviour
 
         moveSakura(ref aura, ref distance, 1);
 
-        game.distance = distance;
+        game.SetDistance(distance);
         player.SetAura(aura);
 
         Debug.Log(player.GetAura());
-        Debug.Log(game.distance);
+        Debug.Log(game.GetDistance());
     }
 
     /// <summary>
@@ -174,9 +171,9 @@ public class EventQueue : MonoBehaviour
     private void Recover(Player player, SingleGame game)
     {
         int aura = player.GetAura();
-        int dust = game.dust;
+        int dust = game.GetDust();
 
-        int n = CountAvailableSakura(game.dust, 1);
+        //int n = CountAvailableSakura(game.GetDust(), 1);
 
         if (player.GetAura() >= player.GetMaxAura() || dust <= 0)
         {
@@ -185,11 +182,11 @@ public class EventQueue : MonoBehaviour
 
         moveSakura(ref dust, ref aura, 1);
 
-        game.dust = dust;
+        game.SetDust(dust);
         player.SetAura(aura);
 
         Debug.Log(player.GetAura());
-        Debug.Log(game.dust);
+        Debug.Log(game.GetDust());
     }
 
     /// <summary>
@@ -202,7 +199,7 @@ public class EventQueue : MonoBehaviour
         int aura = player.GetAura();
         int flare = player.GetFlare();
 
-        int n = CountAvailableSakura(game.dust, 1);
+        //int n = CountAvailableSakura(game.dust, 1);
 
         if (player.GetAura() <= 0)
         {
@@ -225,8 +222,8 @@ public class EventQueue : MonoBehaviour
     /// <param name="game"></param>
     private void Breakaway(Player player, SingleGame game)
     {
-        int dust = game.dust;
-        int distance = game.distance;
+        int dust = game.GetDust();
+        int distance = game.GetDistance();
 
         if (dust <= 0 || distance >= 10)
         {
@@ -235,12 +232,13 @@ public class EventQueue : MonoBehaviour
 
         moveSakura(ref dust, ref distance, 1);
 
-        game.dust = dust;
-        game.distance = distance;
+        game.SetDust(dust);
+        game.SetDistance(distance);
 
-        Debug.Log(game.dust);
-        Debug.Log(game.distance);
+        Debug.Log(game.GetDust());
+        Debug.Log(game.GetDistance());
     }
+    #endregion
 
     /// <summary>
     ///  집중력 추가
@@ -254,14 +252,16 @@ public class EventQueue : MonoBehaviour
             player.SetFocus(player.GetFocus() + num);
     }
 
+    /// <summary>
+    ///  ī�� ��ο�
+    /// </summary>
     void DrawCard(Player player, SingleGame game)
     {
         if (player.deck.Count > 0)
         {
             Card card = player.deck[0];
             player.deck.RemoveAt(0);
-            player.hand.Add(card);
-            game.SetHandPanel(card);
+            player.hand.AddCard(card);
         }
         else
         {
@@ -290,7 +290,6 @@ public class EventQueue : MonoBehaviour
         startLocation -= count;
         endLocation += count;
     }
-
     void Attack(Player attacker, Player defender, int auraDamage, int lifeDamage)
     {
         //공격 효과 적용 순서
@@ -305,7 +304,6 @@ public class EventQueue : MonoBehaviour
         //7.승패 확인
         //  └체력0일시 - 게임종료
         //  └체력이남아있을때 - 진행
-
 
     }
 

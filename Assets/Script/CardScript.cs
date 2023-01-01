@@ -11,7 +11,7 @@ public class CardScript : MonoBehaviour
     private SingleGame game;
     public GameObject cardPanel;
     private GameObject instanceCardPanel;
-    private int Id;
+    private string Id;
 
     public void ShowPanel(Vector3 pointer)
     {
@@ -31,6 +31,9 @@ public class CardScript : MonoBehaviour
         this.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/" + card.cardName);
         instanceCardPanel = Instantiate(cardPanel, transform);
         instanceCardPanel.SetActive(false);
+
+        this.GetComponent<Button>().onClick.AddListener(game.ClickCard);
+
         this.Id = card.Id;
         Button useButton = (Button)instanceCardPanel.transform.Find("UseButton").gameObject.GetComponent<Button>();
         Button discardButton = (Button)instanceCardPanel.transform.Find("DiscardButton").gameObject.GetComponent<Button>();
