@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e53a2a63096be40b381dbd948ecc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 8926274534910152986, guid: e98f0e1019021a54b9a56ac0528e355c, type: 3}
 --- !u!224 &657549657
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1251,8 +1252,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1375954622}
   m_HandleRect: {fileID: 1375954621}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.7093552
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2513,6 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e53a2a63096be40b381dbd948ecc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 8926274534910152986, guid: e98f0e1019021a54b9a56ac0528e355c, type: 3}
 --- !u!224 &1707075047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2545,7 +2547,7 @@ GameObject:
   - component: {fileID: 1916516459}
   - component: {fileID: 1916516458}
   m_Layer: 5
-  m_Name: Content
+  m_Name: MyHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2568,7 +2570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -90.484955, y: -0.00021362305}
+  m_AnchoredPosition: {x: -90.48496, y: -0.00021362305}
   m_SizeDelta: {x: 0, y: 13.559998}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1916516458
