@@ -16,6 +16,8 @@ public class SingleGame : MonoBehaviour
     private Text _dustText;
     public GameObject hand;
 
+    public GameObject myBreakAwayButton;
+
     private bool canPanelOpened;
 
     private int _distance;
@@ -72,10 +74,11 @@ public class SingleGame : MonoBehaviour
         {
             ClearPopUp();
         }
+        UpdateWindow();
     }
 
     /// <summary>
-    ///  Ä«µå µå·Î¿ì
+    ///  ì¹´ë“œ ë“œë¡œìš°
     /// </summary>
     public void Draw(Player mePlayer, Player youPlayer, int count)
     {
@@ -85,7 +88,7 @@ public class SingleGame : MonoBehaviour
     }
 
     /// <summary>
-    ///  ±âº»Çàµ¿À» ÇßÀ» ¶§ ÀÛ¾÷Å¥¿¡ ÀÌº¥Æ®¸¦ Ãß°¡ÇÔ
+    ///  ê¸°ë³¸í–‰ë™ì„ í–ˆì„ ë•Œ ì‘ì—…íì— ì´ë²¤íŠ¸ë¥¼ ì¶”ê°€í•¨
     /// </summary>
     public void UseBasicAction(string type)
     {
@@ -109,10 +112,9 @@ public class SingleGame : MonoBehaviour
         Draw(me, you, 1);
     }
 
-
     public void ResetHandPanel(Card c)
     {
-        // TODO : 1Àå¾¿ »èÁ¦ÇÏ´Â °Í ±¸Çö
+        // TODO : 1ì¥ì”© ì‚­ì œí•˜ëŠ” ê²ƒ êµ¬í˜„
         if(me.hand.Contains(c))
         {
             var handList = hand.GetComponentsInChildren<Transform>();
@@ -153,7 +155,7 @@ public class SingleGame : MonoBehaviour
 
     public void UseCard(Card card)
     {
-        // TODO : Ä«µå »ç¿ë
+        // TODO : ì¹´ë“œ ì‚¬ìš©
         GameObject queue = Instantiate(eventQueue);
         queue.GetComponent<EventQueue>().AddCardTiming(me, you, this, card);
     }

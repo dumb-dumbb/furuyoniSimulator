@@ -29,7 +29,7 @@ public class Card
                 effectList.Add(new Timimg(cardType, "na_01_yurina_o_n_5_s5_2"));
                 break;
             case "na_01_yurina_o_n_1":
-                effectList.Add(new Timimg(cardType, "na_01_yurina_o_n_1_1"));
+                effectList.Add(new Timimg(cardType, "na_01_yurina_o_n_1"));
                 break;
         }
     }
