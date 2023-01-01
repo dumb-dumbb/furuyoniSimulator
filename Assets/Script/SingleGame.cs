@@ -74,7 +74,6 @@ public class SingleGame : MonoBehaviour
         {
             ClearPopUp();
         }
-        UpdateWindow();
     }
 
     /// <summary>
