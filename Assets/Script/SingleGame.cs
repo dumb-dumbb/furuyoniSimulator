@@ -130,17 +130,17 @@ public class SingleGame : MonoBehaviour
         //}
     }
 
-    public void SetHandPanel(Card c)
-    {
-        GameObject obj;
-        int n = 0;
-        n = hand.GetComponentsInChildren<Transform>().Length - 1;
-        Debug.Log(n);
-        obj = Instantiate(card, hand.transform);
-        obj.GetComponent<CardScript>().SetAttribute(this, c);
-        obj.GetComponent<Button>().onClick.AddListener(ClickCard);
-        obj.transform.localPosition = new Vector3(-20 + 60 * n, 0, 0);
-    }
+    //public void SetHandPanel(Card c)
+    //{
+    //    GameObject obj;
+    //    int n = 0;
+    //    n = hand.GetComponentsInChildren<Transform>().Length - 1;
+    //    Debug.Log(n);
+    //    obj = Instantiate(card, hand.transform);
+    //    obj.GetComponent<CardScript>().SetAttribute(this, c);
+    //    obj.GetComponent<Button>().onClick.AddListener(ClickCard);
+    //    obj.transform.localPosition = new Vector3(-20 + 60 * n, 0, 0);
+    //}
 
     public void ClearPopUp()
     {

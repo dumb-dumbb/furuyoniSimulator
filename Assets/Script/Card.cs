@@ -12,7 +12,7 @@ public class Card
     public string cardType;
     public string cardName;
     public List<Timimg> effectList;
-    public int Id;
+    public string Id;
 
     public Card(string t, string name)
     {
@@ -20,7 +20,7 @@ public class Card
         cardName = name;
         effectList = new List<Timimg>();
 
-        Id = (int)(Random.value * 100);
+        Id = name + (int)(Random.value * 100);
 
         switch(name)
         {

@@ -112,6 +112,7 @@ public class EventQueue : MonoBehaviour
         StartQueue();
     }
 
+    #region 기본동작
     /// <summary>
     /// 기본동작/전진
     /// </summary>
@@ -238,6 +239,7 @@ public class EventQueue : MonoBehaviour
         Debug.Log(game.GetDust());
         Debug.Log(game.GetDistance());
     }
+    #endregion
 
     /// <summary>
     ///  집중력 추가
@@ -251,14 +253,16 @@ public class EventQueue : MonoBehaviour
             player.SetFocus(player.GetFocus() + num);
     }
 
+    /// <summary>
+    ///  카드 드로우
+    /// </summary>
     void DrawCard(Player player, SingleGame game)
     {
         if (player.deck.Count > 0)
         {
             Card card = player.deck[0];
             player.deck.RemoveAt(0);
-            player.hand.Add(card);
-            game.SetHandPanel(card);
+            player.hand.AddCard(card);
         }
         else
         {
@@ -288,10 +292,11 @@ public class EventQueue : MonoBehaviour
         endLocation += count;
     }
 
-    void Attack(Player me, Player you, int auraDamage, int lifeDamage)
+    void Attack(Player me, Player you, SingleGame game, int auraDamage, int lifeDamage)
     {
         //TODO : 공격 구현
-        
+        //game.
+        flag = false;
     }
 
     void GetDamage(Player me, int auraDamage, int lifeDamage)
