@@ -172,4 +172,13 @@ public class SingleGame : MonoBehaviour
             card.GetComponent<CardScript>().ShowPanel(point);
         }
     }
+
+    /// <summary>
+    /// 부여패에서 벚꽃 제거
+    /// </summary>
+    public void RemoveSakuraFromEnchantCard()
+    {
+        //부여패 반복문
+        //MoveSakura(부여패, 더스트, 1) 
+    }
 }
