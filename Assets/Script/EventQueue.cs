@@ -111,7 +111,7 @@ public class EventQueue : MonoBehaviour
         StartQueue();
     }
 
-    #region �⺻����
+    #region 기본동작
     /// <summary>
     /// 기본동작/전진
     /// </summary>
@@ -253,7 +253,7 @@ public class EventQueue : MonoBehaviour
     }
 
     /// <summary>
-    ///  ī�� ��ο�
+    ///  카드 드로우
     /// </summary>
     void DrawCard(Player player, SingleGame game)
     {
