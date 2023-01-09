@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Card
 {
-
-    public const string ATTACK = "attack";
-    public const string ACTION = "action";
-    public const string TEST = "test";
-
+    private bool _isSuper;
     public string cardType;
     public string cardName;
     public List<Timimg> effectList;
