@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Script
+namespace Assets.Script.Cards
 {
-    public class EnchantCard : Card
+    public class EnhanceCard : Card
     {
         private int stockedSakura;
 
         private int stockedSeed;
 
-        public EnchantCard(string a, string b) : base(a, b)
+        public EnhanceCard(string a, string b) : base(a, b)
         {
             
         }

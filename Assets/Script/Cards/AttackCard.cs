@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Script
+namespace Assets.Script.Cards
 {
     public class AttackCard : Card
     {
@@ -22,10 +22,10 @@ namespace Assets.Script
 
         public void PlayCard()
         {
-            if(DoCardEffect())
-            {
+            //if(DoCardEffect())
+            //{
                 
-            }
+            //}
         }
     }
 }

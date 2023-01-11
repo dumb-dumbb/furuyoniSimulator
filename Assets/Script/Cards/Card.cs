@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Card
 {
-    private bool _isSuper;
-    public string cardType;
+    private bool _isSpecial;
+    //전력여부
+    private bool _isThroughOut;
+    private string cardType;
     public string cardName;
     public List<Timimg> effectList;
-    public string Id;
+    private string id;
+
+    public string CardType { get => cardType;}
+    public string Id { get => id;}
 
     public Card(string t, string name)
     {
@@ -16,7 +21,7 @@ public class Card
         cardName = name;
         effectList = new List<Timimg>();
 
-        Id = name + (int)(Random.value * 100);
+        this.id = name + (int)(Random.value * 100);
 
         switch(name)
         {
