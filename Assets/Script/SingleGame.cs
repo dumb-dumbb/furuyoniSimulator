@@ -174,6 +174,24 @@ public class SingleGame : MonoBehaviour
     }
 
     /// <summary>
+    /// 턴의 시작
+    /// </summary>
+    public void StartTurn()
+    {
+        GameObject queue = Instantiate(eventQueue); 
+        
+        //턴 시작단계 타이밍 큐 추가
+        //집중력 증가
+        queue.GetComponent<EventQueue>().AddFocusTiming(me, you, this, 2);
+        //부여패 벚꽃 제거
+        RemoveSakuraFromEnchantCard();
+        //덱 재구성 체크
+        //드로우2
+        Draw(me, you, 2);
+
+    }
+
+    /// <summary>
     /// 부여패에서 벚꽃 제거
     /// </summary>
     public void RemoveSakuraFromEnchantCard()

@@ -70,6 +70,9 @@ public class EventQueue : MonoBehaviour
                 case "draw":
                     DrawCard(time.me, time.game);
                     break;
+                case "addFocus":
+                    AddFocus(time.me, 1);
+                    break;
                 default:
                     break;
             }
@@ -102,12 +105,23 @@ public class EventQueue : MonoBehaviour
 
     public void AddCardTiming(Player me, Player you, SingleGame game, Card card)
     {
-        eventList.Add(new Timimg(me, you, game, card.cardType, "before"));
+        eventList.Add(new Timimg(me, you, game, card.CardType, "before"));
         for(int i = 0; i < card.effectList.Count; i++)
         {
             eventList.Add(new Timimg(me, you, game, card.effectList[i].tag, card.effectList[i].effect));
         }
-        eventList.Add(new Timimg(me, you, game, card.cardType, "after"));
+        eventList.Add(new Timimg(me, you, game, card.CardType, "after"));
+        StartQueue();
+    }
+
+    public void AddFocusTiming(Player me, Player you, SingleGame game, int count)
+    {
+        eventList.Add(new Timimg(me, you, game, "addFocus", "before"));
+        for (int i = 0; i < count; i++)
+        {
+            eventList.Add(new Timimg(me, you, game, "addFocus", "addFocus"));
+        }
+        eventList.Add(new Timimg(me, you, game, "addFocus", "addFocus"));
         StartQueue();
     }
 

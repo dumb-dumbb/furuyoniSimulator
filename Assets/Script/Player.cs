@@ -90,8 +90,11 @@ public class Player : MonoBehaviour
 
     public void SetFocus(int value)
     {
-        _focus = value;
-        _focusText.text = _focus.ToString();
+        if(_focus < MAX_FOCUS)
+        {
+            _focus = value;
+            _focusText.text = _focus.ToString();
+        }
     }
 
     public void SetAuraText(Text value)

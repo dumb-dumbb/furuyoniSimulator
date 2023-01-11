@@ -13,5 +13,10 @@ namespace Assets.Script.Cards
         {
             
         }
+
+        public void RemoveSakura(int cnt)
+        {
+
+        }
     }
 }
